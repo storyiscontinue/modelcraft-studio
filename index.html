@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@500;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css?v=2.2">
 </head>
 <body>
 
@@ -342,15 +342,23 @@
                             </div>
                         </div>
                         <div class="stat-group">
-                            <div class="group-title">双 API 中转站状态 (Dual Relay API)</div>
+                            <div class="group-title">多中转站 API 调度状态 (Multi-Relay Gateways)</div>
                             <div class="api-relays-status">
                                 <div class="relay-item">
                                     <span class="relay-dot active" id="relay-workflow"></span>
-                                    <span>工作流中转站 (Workflow)</span>
+                                    <span>工作流跑算中转 (Workflow Engine)</span>
                                 </div>
                                 <div class="relay-item">
                                     <span class="relay-dot active" id="relay-audit"></span>
-                                    <span>审计刺客中转站 (Audit)</span>
+                                    <span>审计刺客中转 (Audit & Nitpick)</span>
+                                </div>
+                                <div class="relay-item">
+                                    <span class="relay-dot active" id="relay-research"></span>
+                                    <span>联网研究网关 (Web Research)</span>
+                                </div>
+                                <div class="relay-item">
+                                    <span class="relay-dot active" id="relay-mcp"></span>
+                                    <span>本地 MCP 插件连接器 (MCP Relay)</span>
                                 </div>
                             </div>
                         </div>
@@ -462,8 +470,8 @@
                             <p>内置 Windows Sandbox 严格隔离环境脚本，一键封锁主机虚拟网卡、全局剪贴板、音视频输入及 vGPU 硬件驱动，建立彻底安全的纯离线算法验证空间。</p>
                         </div>
                         <div class="sec-feat-item">
-                            <h4>⚡ 双 API 中转站物理隔离架构</h4>
-                            <p>工作流跑算接口与安全刺客审计接口物理隔离。低保密模型执行常规 Skills 求解，顶级推理模型专门校验主张证据链并进行严苛的盲审挑刺。</p>
+                            <h4>⚡ 多中转站 API 智能调度网关</h4>
+                            <p>内置 Web Research 网关（抓取 Jina/GitHub/CLI）与双 API 中转架构。低保密模块执行工作流计算，顶级推理中转站执行盲审挑刺，本地 MCP 网关确保数据不出站。</p>
                         </div>
                     </div>
                 </div>

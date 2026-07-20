@@ -646,18 +646,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentStep = terminalStepsData[simStepIndex];
 
-        // 联动双中转站指示灯状态
+        // 联动多中转站指示灯状态
         const relayWorkflow = document.getElementById('relay-workflow');
         const relayAudit = document.getElementById('relay-audit');
-        if (relayWorkflow && relayAudit) {
-            if (currentStep.stepNum === 8) {
-                // 第 8 步：三轮质检，专门启用审计刺客中转站
-                relayWorkflow.classList.remove('active');
+        const relayResearch = document.getElementById('relay-research');
+        const relayMcp = document.getElementById('relay-mcp');
+        if (relayWorkflow && relayAudit && relayResearch && relayMcp) {
+            // 先全部熄灭，再按步骤点亮
+            relayWorkflow.classList.remove('active');
+            relayAudit.classList.remove('active');
+            relayResearch.classList.remove('active');
+            relayMcp.classList.remove('active');
+
+            if (currentStep.stepNum === 1) {
+                // 第 1 步：规则解析，需调用联网研究网关抓取
+                relayResearch.classList.add('active');
+                relayWorkflow.classList.add('active');
+            } else if (currentStep.stepNum === 3) {
+                // 第 3 步：代码求解，需调用本地 MCP 进行计算调试
+                relayWorkflow.classList.add('active');
+                relayMcp.classList.add('active');
+            } else if (currentStep.stepNum === 8) {
+                // 第 8 步：三轮独立盲审质检，发送给审计刺客中转站
                 relayAudit.classList.add('active');
             } else {
-                // 其他开发跑算步骤：启用常规工作流中转站
+                // 其他常规生成步骤，启用常规工作流中转
                 relayWorkflow.classList.add('active');
-                relayAudit.classList.remove('active');
             }
         }
 
@@ -761,6 +775,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         termTokens.textContent = "0";
         termCost.textContent = "¥0.00";
+
+        // 重置多中转站状态灯为全部亮起就绪
+        const relayWorkflow = document.getElementById('relay-workflow');
+        const relayAudit = document.getElementById('relay-audit');
+        const relayResearch = document.getElementById('relay-research');
+        const relayMcp = document.getElementById('relay-mcp');
+        if (relayWorkflow && relayAudit && relayResearch && relayMcp) {
+            relayWorkflow.classList.add('active');
+            relayAudit.classList.add('active');
+            relayResearch.classList.add('active');
+            relayMcp.classList.add('active');
+        }
 
         termFileTree.replaceChildren();
         if (termEmptyTreeMsg) {
