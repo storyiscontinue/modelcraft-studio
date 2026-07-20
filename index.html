@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModelCraft 数模工坊 - 本地 AI 驱动数学建模工作流</title>
+    <!-- 引入极具古典文献与人文设计感的衬线及无衬线字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@500;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- 顶部导航栏 (轻透轻奢暖米玻璃纸) -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="9" stroke="var(--accent-clay)" stroke-width="1" stroke-dasharray="3 2"/>
+                    <path d="M12 4V20M4 12H20" stroke="var(--accent-clay)" stroke-width="1"/>
+                    <rect x="8" y="8" width="8" height="8" stroke="var(--accent-sage)" stroke-width="1.5" transform="rotate(45 12 12)"/>
+                </svg>
+                <span class="logo-text"><span class="logo-light">Model</span><span class="logo-bold">Craft</span></span>
+            </a>
+            <nav class="nav-menu">
+                <a href="#fourier-showcase" class="nav-link">傅里叶演示</a>
+                <a href="#topology" class="nav-link">拓扑网络</a>
+                <a href="#simulator" class="nav-link">学术终端</a>
+                <a href="#calculator" class="nav-link">算力开销</a>
+                <a href="#security" class="nav-link">安全边界</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#download" class="btn btn-outline btn-sm">免费获取 v1.5</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 暖调英雄海报区 (星轨粒子微分仿真背景) -->
+    <section class="hero-section">
+        <!-- 3D 洛伦兹星轨仿真 Canvas -->
+        <canvas id="attractor-canvas" class="attractor-bg"></canvas>
+        
+        <!-- 微分方程参数浮盘 -->
+        <div class="canvas-controls">
+            <span class="control-label">CHAOTIC TRAJECTORY (MOUSE DRAG TO ROTATE VIEW)</span>
+            <div class="equation-text">
+                dx/dt = 10(y - x) &nbsp;&bull;&nbsp; dy/dt = x(28 - z) - y &nbsp;&bull;&nbsp; dz/dt = xy - 8/3z
+            </div>
+        </div>
+
+        <div class="container hero-container">
+            <div class="badge-container">
+                <span class="badge-text"><span class="badge-dot"></span> 71x 本地 Skills &bull; DPAPI加密 &bull; 零隐私泄露</span>
+            </div>
+            <h1 class="hero-title">
+                让数学之美，以优雅的姿态<br>
+                <span class="gradient-text">融入自动驾驶工作流</span>
+            </h1>
+            <p class="hero-subtitle">
+                数模工坊 (ModelCraft) 是一款本地优先的独立数模科学计算工作流软件。它完全运行在本地零网络出站沙箱中，使用内置的 71 个核心 Skills 完成从赛题拆解、模型建立、求解编码、到三轮盲审质检与 XeLaTeX 编译的全流程闭环。
+            </p>
+            <div class="hero-buttons">
+                <a href="#fourier-showcase" class="btn btn-gradient btn-lg">进入数学演示</a>
+                <a href="#simulator" class="btn btn-blur btn-lg">启动工作台</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 傅里叶级数圆周行星轮实时数学模拟器 (Fourier Epicycle Showcase) -->
+    <section id="fourier-showcase" class="fourier-section">
+        <div class="container">
+            <div class="section-grid">
+                <!-- 左半侧：交互控制与文案 -->
+                <div class="fourier-content">
+                    <span class="section-subtitle">MATHEMATICAL GRAPHICS</span>
+                    <h2 class="section-title">会动的 <span class="gradient-text">傅里叶行星轮绘制机</span></h2>
+                    <p class="section-desc">
+                        数学建模的真谛在于用简单的规则还原复杂的系统。这个动态图形机模拟了傅里叶级数的逼近过程：通过数个互相叠加旋转的圆轨道（谐波），最终可在右侧精准勾勒出复合声波/方波的连续振荡曲线。
+                    </p>
+                    
+                    <!-- 交互控制器 -->
+                    <div class="fourier-controls-box">
+                        <div class="control-row">
+                            <span class="ctrl-label">波形样式 (Wave Type)</span>
+                            <div class="toggle-group" id="fourier-wave-types">
+                                <button class="toggle-btn active" data-wave="square">方波</button>
+                                <button class="toggle-btn" data-wave="sawtooth">锯齿波</button>
+                                <button class="toggle-btn" data-wave="triangle">三角波</button>
+                            </div>
+                        </div>
+                        <div class="control-row">
+                            <div class="ctrl-header">
+                                <span class="ctrl-label">谐波阶数 (Harmonic Count)</span>
+                                <span class="ctrl-value" id="fourier-harmonics-val">5</span>
+                            </div>
+                            <input type="range" id="fourier-harmonics-slider" min="1" max="25" step="1" value="5" class="range-slider">
+                        </div>
+                        <div class="control-row inline-actions">
+                            <button class="btn btn-outline btn-sm" id="btn-fourier-pause">暂停模拟</button>
+                            <button class="btn btn-outline btn-sm" id="btn-fourier-reset">重置轨迹</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右半侧：傅里叶行星轮 Canvas 绘制画布 -->
+                <div class="fourier-canvas-wrapper">
+                    <div class="canvas-grid-lines"></div>
+                    <canvas id="fourier-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 拓扑工作流阶段 (Topology Workflow Section) -->
+    <section id="topology" class="topology-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">PIPELINE TOPOLOGY</span>
+                <h2 class="section-title">九大建模阶段 <span class="gradient-text">拓扑数据网</span></h2>
+                <p class="section-desc">工作流以数据节点形态错落分布，SVG 连线动态承载了微技能（Skills）的输出。点击对应节点，即可穿透查看其计算方程式及产物。</p>
+            </div>
+
+            <!-- 数据流拓扑网格 -->
+            <div class="topology-container">
+                <!-- SVG 连接线及粒子流动画背景 -->
+                <svg class="topology-links" viewBox="0 0 1000 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 连线路径 -->
+                    <path id="path-1-2" d="M120 120 L380 120" stroke="rgba(44,37,30,0.06)" stroke-width="1.5"/>
+                    <path id="path-2-3" d="M380 120 L500 230" stroke="rgba(44,37,30,0.06)" stroke-width="1.5"/>
+                    <path id="path-3-4" d="M500 230 L260 230" stroke="rgba(44,37,30,0.06)" stroke-width="1.5"/>
+                    <path id="path-4-5" d="M260 230 L120 340" stroke="rgba(44,37,30,0.06)" stroke-width="1.5"/>
+                    <path id="path-5-6" d="M120 340 L380 340" stroke="rgba(44,37,30,0.06)" stroke-width="1.5"/>
+                    <path id="path-6-7" d="M380 340 L620 340" stroke="rgba(44,37,30,0.06)" stroke-width="1.5"/>
+                    <path id="path-7-8" d="M620 340 L880 230" stroke="rgba(44,37,30,0.06)" stroke-width="1.5"/>
+                    <path id="path-8-9" d="M880 230 L880 120" stroke="rgba(44,37,30,0.06)" stroke-width="1.5"/>
+                    
+                    <!-- 流动发光粒子 (增加了不透明度淡入淡出动画，完美隐藏了首尾跳跃轨迹) -->
+                    <circle r="4" fill="var(--accent-clay)" opacity="0">
+                        <animateMotion dur="6s" repeatCount="indefinite" path="M120 120 L380 120 L500 230 L260 230 L120 340 L380 340 L620 340 L880 230 L880 120"/>
+                        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.95;1" dur="6s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle r="3" fill="var(--accent-sage)" opacity="0">
+                        <animateMotion dur="8s" begin="2s" repeatCount="indefinite" path="M120 120 L380 120 L500 230 L260 230 L120 340 L380 340 L620 340 L880 230 L880 120"/>
+                        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.95;1" begin="2s" dur="8s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+
+                <!-- 拓扑节点 (绝对百分比对齐排版，支持完全自适应对齐) -->
+                <div class="topology-node node-1 active" style="left: 12%; top: 120px;" data-step="1">
+                    <div class="node-pulse"></div>
+                    <div class="node-id">01</div>
+                    <div class="node-name">赛题拆解</div>
+                </div>
+                <div class="topology-node node-2" style="left: 38%; top: 120px;" data-step="2">
+                    <div class="node-pulse"></div>
+                    <div class="node-id">02</div>
+                    <div class="node-name">数学建模</div>
+                </div>
+                <div class="topology-node node-3" style="left: 50%; top: 230px;" data-step="3">
+                    <div class="node-pulse"></div>
+                    <div class="node-id">03</div>
+                    <div class="node-name">代码求解</div>
+                </div>
+                <div class="topology-node node-4" style="left: 26%; top: 230px;" data-step="4">
+                    <div class="node-pulse"></div>
+                    <div class="node-id">04</div>
+                    <div class="node-name">结果复核</div>
+                </div>
+                <div class="topology-node node-5" style="left: 12%; top: 340px;" data-step="5">
+                    <div class="node-pulse"></div>
+                    <div class="node-id">05</div>
+                    <div class="node-name">图表导出</div>
+                </div>
+                <div class="topology-node node-6" style="left: 38%; top: 340px;" data-step="6">
+                    <div class="node-pulse"></div>
+                    <div class="node-id">06</div>
+                    <div class="node-name">论文起草</div>
+                </div>
+                <div class="topology-node node-7" style="left: 62%; top: 340px;" data-step="7">
+                    <div class="node-pulse"></div>
+                    <div class="node-id">07</div>
+                    <div class="node-name">合规记录</div>
+                </div>
+                <div class="topology-node node-8" style="left: 88%; top: 230px;" data-step="8">
+                    <div class="node-pulse"></div>
+                    <div class="node-id">08</div>
+                    <div class="node-name">三轮质检</div>
+                </div>
+                <div class="topology-node node-9" style="left: 88%; top: 120px;" data-step="9">
+                    <div class="node-pulse"></div>
+                    <div class="node-id">09</div>
+                    <div class="node-name">成果编译</div>
+                </div>
+            </div>
+
+            <!-- 选定节点对应的详情详情看板 (高档图书纸张质感) -->
+            <div class="node-detail-panel" id="node-detail-card">
+                <div class="detail-header">
+                    <span class="detail-tech" id="detail-tech-name">comp-prob-analysis</span>
+                    <h3 class="detail-title" id="detail-display-title">赛题拆解 (Problem Analysis)</h3>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-desc" id="detail-display-desc">
+                        提取 PDF/DOCX 题面文本，结合赛题分析 Skill，智能推导核心要点并生成初步的赛题大纲 `PROBLEM_ANALYSIS.md`。
+                    </div>
+                    <div class="detail-math-box">
+                        <span class="math-label">核心数学算法 / 验证公式</span>
+                        <div class="math-content" id="detail-math-formula">
+                            P_core = TF-IDF(W_i) ⊗ Skill_prior ⟶ Output(PROBLEM_ANALYSIS.md)
+                        </div>
+                    </div>
+                    <div class="detail-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label">触发 Skill</span>
+                            <span class="meta-val" id="detail-skill-used">comp-prob-analysis</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">生成产物</span>
+                            <span class="meta-val text-neon-green" id="detail-files-generated">PROBLEM_ANALYSIS.md</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学术工作台仿真终端 (Paper Notebook Workbench Simulator) -->
+    <section id="simulator" class="simulator-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">WORKBENCH SIMULATOR</span>
+                <h2 class="section-title">本地运行 <span class="gradient-text">学术记录仪</span></h2>
+                <p class="section-desc">摒弃廉价的黑客控制台，我们用高雅的纸张表格与墨水打印设计，模拟数学微技能的调用轨迹。</p>
+            </div>
+
+            <!-- 学术纸本式控制面板 -->
+            <div class="terminal-mockup">
+                <!-- 头部控制栏 -->
+                <div class="terminal-titlebar">
+                    <div class="terminal-dots">
+                        <span class="dot close"></span>
+                        <span class="dot minimize"></span>
+                        <span class="dot maximize"></span>
+                    </div>
+                    <div class="terminal-title">ModelCraft Workbench - Local Research Terminal</div>
+                    <div class="terminal-actions">
+                        <span id="terminal-reset" class="action-btn" style="display:none;">重置记录</span>
+                    </div>
+                </div>
+                <!-- 终端工作区 -->
+                <div class="terminal-grid">
+                    <!-- 左半边：墨水打印日志 -->
+                    <div class="terminal-log-area">
+                        <div class="terminal-output" id="terminal-logs">
+                            <div class="output-row text-muted">// 首次启动处于“API 尚未配置”状态，请配置中转站后运行</div>
+                            <div class="output-row text-success">[SYSTEM] 本地守护进程启动成功。所有已知外部遥测域名已被底层 Socket 阻断。</div>
+                        </div>
+                        <div class="terminal-control-footer">
+                            <button class="btn btn-gradient btn-sm" id="terminal-start-btn">启动工作流</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 右半边：纸面统计仪表 -->
+                    <div class="terminal-stats-area">
+                        <div class="stat-group">
+                            <div class="group-title">运行状态 (Status Gate)</div>
+                            <div class="status-gauge">
+                                <span class="gauge-dot" id="gauge-dot"></span>
+                                <span class="gauge-text" id="gauge-text">就绪 (DPAPI 加密保护)</span>
+                            </div>
+                        </div>
+                        <div class="stat-group">
+                            <div class="group-title">累计数据量 (Metrics)</div>
+                            <div class="stats-row">
+                                <div class="stat-box">
+                                    <span class="label">消耗 Tokens</span>
+                                    <span class="value" id="stats-tokens">0</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="label">估算资费</span>
+                                    <span class="value text-cyan" id="stats-cost">¥0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-group">
+                            <div class="group-title">当前产生成果目录 (File Tree)</div>
+                            <div class="file-tree-container" id="terminal-file-tree">
+                                <div class="file-node text-muted" id="file-tree-empty">暂未产生本地成果</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 算力用量计算器 (Cost Calculator Section) -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="calculator-box">
+                <div class="calc-content">
+                    <span class="section-subtitle">COST CALCULATOR</span>
+                    <h2 class="section-title">透明额度，<span class="gradient-text">资费了然于心</span></h2>
+                    <p class="section-desc">数模工坊坚守本地存储红线。使用下方滑块调整测试 Token 规模与中转站费率，精准测算出您的项目用量，防止接口偷刷。</p>
+                    
+                    <!-- 交互滑块表单 -->
+                    <div class="calculator-sliders">
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <span>模拟工作流总消耗 (Tokens)</span>
+                                <span class="slider-value" id="val-tokens">150,000</span>
+                            </div>
+                            <input type="range" id="slider-tokens-input" min="50000" max="1000000" step="50000" value="150000" class="range-slider">
+                        </div>
+                        <div class="slider-group">
+                            <div class="slider-header">
+                                <span>百万 Tokens 单价 (CNY)</span>
+                                <span class="slider-value" id="val-price">12.00 元</span>
+                            </div>
+                            <input type="range" id="slider-price-input" min="0.1" max="100" step="0.1" value="12.0" class="range-slider">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 实时折算面板 (古典墨水大字) -->
+                <div class="calc-display">
+                    <div class="calc-glow"></div>
+                    <div class="display-metric">
+                        <span class="metric-label">预估总用量开销 (精度 99.4%)</span>
+                        <div class="metric-big-num" id="calc-total-cost">¥1.80</div>
+                    </div>
+                    <div class="display-details">
+                        <span>折合美元：<strong id="calc-usd-cost">$0.25</strong></span>
+                        <span>每一步平摊：<strong id="calc-step-cost">¥0.20</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 零信任边界与安全机制 (Security Section) -->
+    <section id="security" class="security-section">
+        <div class="container">
+            <div class="security-grid">
+                <div class="security-visual">
+                    <!-- 安全盾牌 & 数据流动拦截图景 -->
+                    <div class="shield-radar">
+                        <svg class="radar-shield" viewBox="0 0 24 24" fill="none" stroke="url(#shield-grad)" stroke-width="1">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <defs>
+                                <linearGradient id="shield-grad" x1="12" y1="2" x2="12" y2="22" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#10b981"/>
+                                    <stop offset="1" stop-color="#06b6d4"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="radar-ring r1"></div>
+                        <div class="radar-ring r2"></div>
+                    </div>
+                    <div class="blocked-urls">
+                        <div class="blocked-badge">mingheng.xin 🚫 物理封锁</div>
+                        <div class="blocked-badge">mhcoding.xyz 🚫 物理封锁</div>
+                        <div class="blocked-badge">update.example.com 🚫 物理封锁</div>
+                    </div>
+                </div>
+                
+                <div class="security-content">
+                    <span class="section-subtitle">ZERO-TRUST DATA BOUNDARY</span>
+                    <h2 class="section-title">绝对安全的隐私防线</h2>
+                    <p class="section-desc">在数学建模竞赛的极端保密规则下，我们制定了行业内极其硬性的网络数据出站检查机制：</p>
+                    
+                    <div class="security-features">
+                        <div class="sec-feat-item">
+                            <h4>🛡️ 底层 Socket 套接字域名审计</h4>
+                            <p>在所有远程请求发起与跳转时，从网络底层捕获并阻断 Modex 激活子域名，任何后台未授权的数据重定向尝试均会被立即挂起并拦截。</p>
+                        </div>
+                        <div class="sec-feat-item">
+                            <h4>🔒 微软 DPAPI 单独硬件加密</h4>
+                            <p>您配置的 API Key 绝对不会以明文保存在 `settings.json` 中。本软件强制调用当前 Windows 用户的硬件安全保护 API 进行隔离加密，防止物理拷贝窃取。</p>
+                        </div>
+                        <div class="sec-feat-item">
+                            <h4>📦 一键 Sandbox 离线启动器</h4>
+                            <p>内置 Windows Sandbox 严格隔离环境脚本，一键封锁主机虚拟网卡、全局剪贴板、音视频输入及 vGPU 硬件驱动，建立彻底安全的纯离线算法验证空间。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载与行动召唤 (CTA Section) -->
+    <section id="download" class="download-section">
+        <div class="container download-container">
+            <div class="download-card">
+                <span class="section-subtitle">PORTABLE BUNDLE</span>
+                <h2 class="download-title">开启独立数学建模科学计算</h2>
+                <p class="download-desc">
+                    免安装，零指纹，不依赖云端。解压便携 ZIP，双击 OfflineModelingAgent.exe 即可开展您的建模工作流。
+                </p>
+                <div class="download-meta-list">
+                    <span>运行平台: Windows 10/11 x64</span>
+                    <span>分发大小: ~32 MB (内置 71x Skills 依赖)</span>
+                </div>
+                <div class="download-button-wrapper">
+                    <a href="file:///D:/Desktop/app-engineer/OfflineModelingAgent1.5.exe.lnk" class="btn btn-gradient btn-lg">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        下载便携版 (v1.5)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 (Academic Footer) -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; 2026 ModelCraft 数模工坊. 所有代码及 Skills 归属于本地计算学术自治项目。</p>
+            <span class="footer-badge">Designed with 🤎 by Antigravity</span>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
