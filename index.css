@@ -1295,3 +1295,152 @@ body {
         text-align: center;
     }
 }
+
+/* ==========================================================================
+   双 API 中转站 & 本地 Agent 辅助开发流指示器样式
+   ========================================================================== */
+.api-relays-status {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.relay-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    color: var(--text-gray);
+}
+
+.relay-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    display: inline-block;
+}
+
+.relay-dot.active {
+    background: var(--accent-clay);
+    box-shadow: 0 0 6px var(--accent-clay);
+}
+
+.agent-dev-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.agent-badge {
+    background: var(--accent-sage);
+    color: var(--bg-base);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+.agent-desc {
+    font-size: 11.5px;
+    color: var(--text-gray);
+}
+
+/* ==========================================================================
+   多学科竞赛全能适配中心样式 (一站解千愁)
+   ========================================================================== */
+.competition-flow-section {
+    padding: 100px 0;
+    border-bottom: 1px solid var(--border-warm);
+    background: #fdfcf9;
+}
+
+.comp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.comp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-warm-thick);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-custom);
+}
+
+.comp-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-clay);
+    box-shadow: 0 12px 30px rgba(44, 37, 30, 0.08);
+}
+
+.comp-badge {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    color: var(--accent-sage);
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+}
+
+.comp-card h3 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-charcoal);
+    margin-bottom: 8px;
+}
+
+.comp-desc {
+    font-size: 13px;
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.comp-tags {
+    margin-top: auto;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    margin-bottom: 16px;
+    border-bottom: 1px dashed var(--border-warm);
+    padding-bottom: 12px;
+}
+
+.comp-tags span {
+    color: var(--text-charcoal);
+    font-weight: 600;
+}
+
+.comp-workflow-preview {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10.5px;
+    color: var(--text-muted);
+}
+
+.workflow-node-mini {
+    background: var(--bg-sand);
+    border: 1px solid var(--border-warm);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    color: var(--text-gray);
+}
+
+@media (max-width: 1024px) {
+    .comp-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}

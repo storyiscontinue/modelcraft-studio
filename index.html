@@ -67,6 +67,64 @@
         </div>
     </section>
 
+    <!-- 一站解千愁：多学科竞赛全能适配中心 (Multi-Competition Alignment Station) -->
+    <section id="competition-flow" class="competition-flow-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">COMPETITION ALIGNMENT STATION</span>
+                <h2 class="section-title">多竞赛流支持 &bull; <span class="gradient-text">一站解千愁</span></h2>
+                <p class="section-desc">不论是数模的严密推导，创赛的商业财务，还是电赛原型的 TRL 评估、社科问卷抽样，ModelCraft 内置的 71 个科学 Skills 一站式打通规则、数据、合规、盲审与讲稿所有痛点。</p>
+            </div>
+
+            <div class="comp-grid">
+                <!-- 卡片 1：学术与数学建模 -->
+                <div class="comp-card">
+                    <div class="comp-badge">SCIENCE & DATA MODELING</div>
+                    <h3>📐 数学与统计建模赛道</h3>
+                    <p class="comp-desc">满足数模国赛（CUMCM）、美赛（MCM/ICM）、深圳杯、研究生数模及统计建模的硬性要求，实现代码与论文的证据链双重校验。</p>
+                    <div class="comp-tags">
+                        <span>国赛</span> &bull; <span>美赛</span> &bull; <span>深圳杯</span> &bull; <span>统计建模</span>
+                    </div>
+                    <div class="comp-workflow-preview">
+                        <span class="workflow-node-mini">规则解析</span> ⟶ 
+                        <span class="workflow-node-mini">主张校验</span> ⟶ 
+                        <span class="workflow-node-mini">成果打包</span>
+                    </div>
+                </div>
+
+                <!-- 卡片 2：创新创业与商业挑战 -->
+                <div class="comp-card">
+                    <div class="comp-badge">INNOVATION & BUSINESS</div>
+                    <h3>💡 创新创业与商业挑战赛道</h3>
+                    <p class="comp-desc">针对中国国际大学生创新大赛（原互联网+）、挑战杯创业计划（小挑战杯）及各类商业案例赛，提供TAM/SAM/SOM市场测算与五年财务模型。</p>
+                    <div class="comp-tags">
+                        <span>创新大赛</span> &bull; <span>小挑战杯</span> &bull; <span>商业案例</span> &bull; <span>创赛路演</span>
+                    </div>
+                    <div class="comp-workflow-preview">
+                        <span class="workflow-node-mini">痛点校验</span> ⟶ 
+                        <span class="workflow-node-mini">市场财务</span> ⟶ 
+                        <span class="workflow-node-mini">模拟评委</span>
+                    </div>
+                </div>
+
+                <!-- 卡片 3：科创电赛与社会调查 -->
+                <div class="comp-card">
+                    <div class="comp-badge">ENGINEERING & SOCIAL SURVEYS</div>
+                    <h3>⚙️ 科创发明、电赛与社科调查</h3>
+                    <p class="comp-desc">适配全国大学生电子设计竞赛（电赛）、智能车、挑战杯学术科技作品（大挑战杯），以及哲社调查、市场调查与分析大赛等学科。</p>
+                    <div class="comp-tags">
+                        <span>电子设计</span> &bull; <span>智能车</span> &bull; <span>大挑战杯</span> &bull; <span>市调大赛</span>
+                    </div>
+                    <div class="comp-workflow-preview">
+                        <span class="workflow-node-mini">资格合规</span> ⟶ 
+                        <span class="workflow-node-mini">原型TRL</span> ⟶ 
+                        <span class="workflow-node-mini">敏捷松冲刺</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 傅里叶级数圆周行星轮实时数学模拟器 (Fourier Epicycle Showcase) -->
     <section id="fourier-showcase" class="fourier-section">
         <div class="container">
@@ -231,7 +289,7 @@
             <div class="section-header">
                 <span class="section-subtitle">WORKBENCH SIMULATOR</span>
                 <h2 class="section-title">本地运行 <span class="gradient-text">学术记录仪</span></h2>
-                <p class="section-desc">摒弃廉价的黑客控制台，我们用高雅的纸张表格与墨水打印设计，模拟数学微技能的调用轨迹。</p>
+                <p class="section-desc">支持本地 Agent 辅助开发流与双中转站 API 状态。用高雅的纸张设计，模拟 71 个科学 Skills 轨迹与代码编译成果。</p>
             </div>
 
             <!-- 学术纸本式控制面板 -->
@@ -284,7 +342,27 @@
                             </div>
                         </div>
                         <div class="stat-group">
-                            <div class="group-title">当前产生成果目录 (File Tree)</div>
+                            <div class="group-title">双 API 中转站状态 (Dual Relay API)</div>
+                            <div class="api-relays-status">
+                                <div class="relay-item">
+                                    <span class="relay-dot active" id="relay-workflow"></span>
+                                    <span>工作流中转站 (Workflow)</span>
+                                </div>
+                                <div class="relay-item">
+                                    <span class="relay-dot active" id="relay-audit"></span>
+                                    <span>审计刺客中转站 (Audit)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-group">
+                            <div class="group-title">本地 Agent 辅助开发流 (Agent Dev)</div>
+                            <div class="agent-dev-status">
+                                <span class="agent-badge">Active</span>
+                                <span class="agent-desc">Codex/Antigravity 自动挂载</span>
+                            </div>
+                        </div>
+                        <div class="stat-group">
+                            <div class="group-title">当前产产生果目录 (File Tree)</div>
                             <div class="file-tree-container" id="terminal-file-tree">
                                 <div class="file-node text-muted" id="file-tree-empty">暂未产生本地成果</div>
                             </div>
@@ -382,6 +460,10 @@
                         <div class="sec-feat-item">
                             <h4>📦 一键 Sandbox 离线启动器</h4>
                             <p>内置 Windows Sandbox 严格隔离环境脚本，一键封锁主机虚拟网卡、全局剪贴板、音视频输入及 vGPU 硬件驱动，建立彻底安全的纯离线算法验证空间。</p>
+                        </div>
+                        <div class="sec-feat-item">
+                            <h4>⚡ 双 API 中转站物理隔离架构</h4>
+                            <p>工作流跑算接口与安全刺客审计接口物理隔离。低保密模型执行常规 Skills 求解，顶级推理模型专门校验主张证据链并进行严苛的盲审挑刺。</p>
                         </div>
                     </div>
                 </div>

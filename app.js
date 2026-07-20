@@ -646,6 +646,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentStep = terminalStepsData[simStepIndex];
 
+        // 联动双中转站指示灯状态
+        const relayWorkflow = document.getElementById('relay-workflow');
+        const relayAudit = document.getElementById('relay-audit');
+        if (relayWorkflow && relayAudit) {
+            if (currentStep.stepNum === 8) {
+                // 第 8 步：三轮质检，专门启用审计刺客中转站
+                relayWorkflow.classList.remove('active');
+                relayAudit.classList.add('active');
+            } else {
+                // 其他开发跑算步骤：启用常规工作流中转站
+                relayWorkflow.classList.add('active');
+                relayAudit.classList.remove('active');
+            }
+        }
+
         if (simLogIndex < currentStep.logs.length) {
             const logText = currentStep.logs[simLogIndex];
             let colorClass = '';
