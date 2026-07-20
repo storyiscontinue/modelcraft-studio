@@ -359,9 +359,9 @@
                         <div class="radar-ring r2"></div>
                     </div>
                     <div class="blocked-urls">
-                        <div class="blocked-badge">mingheng.xin 🚫 物理封锁</div>
-                        <div class="blocked-badge">mhcoding.xyz 🚫 物理封锁</div>
-                        <div class="blocked-badge">update.example.com 🚫 物理封锁</div>
+                        <div class="blocked-badge">api.openai.com 🚫 物理隔离</div>
+                        <div class="blocked-badge">telemetry.services 🚫 物理隔离</div>
+                        <div class="blocked-badge">analytics.cloud 🚫 物理隔离</div>
                     </div>
                 </div>
                 
@@ -373,7 +373,7 @@
                     <div class="security-features">
                         <div class="sec-feat-item">
                             <h4>🛡️ 底层 Socket 套接字域名审计</h4>
-                            <p>在所有远程请求发起与跳转时，从网络底层捕获并阻断 Modex 激活子域名，任何后台未授权的数据重定向尝试均会被立即挂起并拦截。</p>
+                            <p>在所有外部链接与远程通信发起时，从系统网络底层捕获并自动审计非授权域名，任何未授权的数据请求和出站连接尝试均会被立即拦截。</p>
                         </div>
                         <div class="sec-feat-item">
                             <h4>🔒 微软 DPAPI 单独硬件加密</h4>
