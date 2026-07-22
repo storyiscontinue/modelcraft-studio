@@ -1,0 +1,34 @@
+{
+    "version":  "0.1.0",
+    "license":  "MIT",
+    "keywords":  [
+                     "competition",
+                     "research",
+                     "modeling",
+                     "innovation",
+                     "education"
+                 ],
+    "name":  "competition-app-skill-pack",
+    "description":  "Rule-aware, evidence-grounded skills for high-school and university competition apps.",
+    "interface":  {
+                      "developerName":  "ModelCraft competition app team",
+                      "displayName":  "Competition App Skill Pack",
+                      "capabilities":  [
+                                           "Read",
+                                           "Write",
+                                           "Interactive"
+                                       ],
+                      "longDescription":  "A portable Codex skill-only plugin for routing and governing high-school and university competition workflows, with current-rule ingestion, provenance, AI disclosure, innovation project validation, judging simulation, and submission packaging.",
+                      "shortDescription":  "Rules, evidence, modeling, innovation, judging, and submission workflows.",
+                      "defaultPrompt":  [
+                                            "解析本届赛事规则并生成项目工作流。",
+                                            "检查项目证据、AI 使用和提交合规性。",
+                                            "为创新大赛编排项目打磨与答辩。"
+                                        ],
+                      "category":  "Education"
+                  },
+    "author":  {
+                   "name":  "ModelCraft competition app team"
+               },
+    "skills":  "./skills/"
+}

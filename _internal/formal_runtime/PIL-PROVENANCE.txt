@@ -1,0 +1,10 @@
+Package: Pillow
+Version: 12.2.0
+Artifact: pillow-12.2.0-cp310-cp310-win_amd64.whl
+Artifact SHA-256: 673aa32138f3e7531ccdbca7b3901dba9b70940a19ccecc6a37c77d5fdeb05b5
+License SHA-256: 75bb81b58f9b39786eeb2e56a1eb829aae501042d49e1dc766ca187b6ce9656f
+Source metadata: https://pypi.org/pypi/pillow/12.2.0/json
+Source project: https://github.com/python-pillow/Pillow
+
+The artifact hash was matched against the official PyPI 12.2.0 JSON metadata
+before its PIL package and license were copied into this formal runtime.

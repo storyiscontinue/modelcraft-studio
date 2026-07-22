@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/execution-envelope.schema.json",
+  "title": "Competition Skill Execution Envelope",
+  "type": "object",
+  "required": ["run_id", "skill_id", "skill_version", "competition_profile", "inputs", "artifacts", "evidence", "ai_usage", "approvals", "budget", "status"],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "parent_run_id": {"type": ["string", "null"]},
+    "skill_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "skill_version": {"type": "string"},
+    "runtime_mode": {
+      "enum": ["zero-config", "connected", "restricted"],
+      "default": "zero-config"
+    },
+    "capability_state": {
+      "type": "object",
+      "properties": {
+        "available": {"type": "array", "items": {"type": "string"}},
+        "unavailable": {"type": "array", "items": {"type": "string"}},
+        "manual_fallbacks": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "output_profile": {
+      "type": "object",
+      "properties": {
+        "language": {"type": "string", "default": "zh-CN"},
+        "audience": {"type": ["string", "null"]},
+        "artifact_type": {"type": ["string", "null"]},
+        "voice": {"enum": ["student-team", "academic", "technical", "business", "defense", "plain"]},
+        "formality": {"enum": ["plain", "standard", "formal"]},
+        "preserve_team_voice": {"type": "boolean", "default": true},
+        "avoid_generic_phrasing": {"type": "boolean", "default": true},
+        "ai_disclosure_required": {"type": "boolean", "default": true}
+      },
+      "additionalProperties": true
+    },
+    "competition_profile": {
+      "type": "object",
+      "required": ["competition_name", "cycle", "rule_sources", "retrieved_at"],
+      "properties": {
+        "competition_name": {"type": "string"},
+        "cycle": {"type": "string"},
+        "track": {"type": ["string", "null"]},
+        "group": {"type": ["string", "null"]},
+        "rule_sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["url", "publisher", "retrieved_at"],
+            "properties": {
+              "url": {"type": "string", "format": "uri"},
+              "publisher": {"type": "string"},
+              "published_at": {"type": ["string", "null"]},
+              "retrieved_at": {"type": "string"},
+              "sha256": {"type": ["string", "null"]},
+              "authority": {"enum": ["official", "organizer", "institutional", "community"]}
+            }
+          }
+        },
+        "retrieved_at": {"type": "string"},
+        "ai_policy": {"type": ["object", "null"]},
+        "submission_constraints": {"type": ["object", "null"]},
+        "rubric": {"type": ["object", "null"]}
+      }
+    },
+    "inputs": {"type": "object"},
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["artifact_id", "type", "uri", "source_run_id", "generated_at"],
+        "properties": {
+          "artifact_id": {"type": "string"},
+          "type": {"type": "string"},
+          "uri": {"type": "string"},
+          "sha256": {"type": ["string", "null"]},
+          "source_run_id": {"type": "string"},
+          "generated_at": {"type": "string"},
+          "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+          "synthetic": {"type": "boolean", "default": false}
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidence_id", "kind", "source", "verified"],
+        "properties": {
+          "evidence_id": {"type": "string"},
+          "kind": {"type": "string"},
+          "source": {"type": "string"},
+          "title": {"type": ["string", "null"]},
+          "url": {"type": ["string", "null"], "format": "uri"},
+          "publisher": {"type": ["string", "null"]},
+          "authority": {"enum": ["official", "organizer", "institutional", "community", "unknown"]},
+          "channel": {"type": ["string", "null"]},
+          "backend": {"type": ["string", "null"]},
+          "verified": {"type": "boolean"},
+          "synthetic": {"type": "boolean", "default": false},
+          "retrieved_at": {"type": ["string", "null"]},
+          "published_at": {"type": ["string", "null"]},
+          "snapshot_sha256": {"type": ["string", "null"]},
+          "credential_mode": {"enum": ["none", "browser-session", "token-broker", "manual-upload"]},
+          "license_or_usage_note": {"type": ["string", "null"]},
+          "notes": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "ai_usage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["interaction_id", "provider", "model", "timestamp", "purpose"],
+        "properties": {
+          "interaction_id": {"type": "string"},
+          "provider": {"type": "string"},
+          "model": {"type": "string"},
+          "timestamp": {"type": "string"},
+          "purpose": {"type": "string"},
+          "input_digest": {"type": ["string", "null"]},
+          "output_digest": {"type": ["string", "null"]},
+          "affected_artifacts": {"type": "array", "items": {"type": "string"}},
+          "human_modifications": {"type": ["string", "null"]},
+          "disclosure_status": {"enum": ["internal", "required", "included", "not_required", "unknown"]}
+        }
+      }
+    },
+    "approvals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["approval_id", "gate", "status"],
+        "properties": {
+          "approval_id": {"type": "string"},
+          "gate": {"type": "string"},
+          "status": {"enum": ["pending", "approved", "rejected"]},
+          "actor": {"type": ["string", "null"]},
+          "timestamp": {"type": ["string", "null"]},
+          "notes": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "max_cost": {"type": ["number", "null"], "minimum": 0},
+        "currency": {"type": "string", "default": "CNY"},
+        "max_duration_seconds": {"type": ["integer", "null"], "minimum": 0},
+        "max_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "allow_remote_compute": {"type": "boolean", "default": false},
+        "allow_external_contact": {"type": "boolean", "default": false}
+      }
+    },
+    "status": {"enum": ["queued", "running", "completed", "partial", "needs_input", "needs_rule_refresh", "needs_approval", "blocked", "failed"]},
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "next_actions": {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": true
+}

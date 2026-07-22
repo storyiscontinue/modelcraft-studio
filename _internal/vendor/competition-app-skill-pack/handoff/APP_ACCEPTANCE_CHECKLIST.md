@@ -1,0 +1,23 @@
+# App Acceptance Checklist
+
+- [ ] Execution envelope validation on request and response
+- [ ] Versioned skill registry and immutable run records
+- [ ] Current official rule snapshot with source and hash
+- [ ] Tool allowlist, credential isolation, timeout, retry, and cost budget
+- [ ] WebResearchGateway capability probe and backend fallback tests
+- [ ] Browser-session and CLI outputs redacted before logs or artifacts
+- [ ] Official-source precedence over community evidence
+- [ ] All 17 skills start and produce useful output in zero-config mode
+- [ ] Missing integrations degrade individual operations and provide manual fallbacks
+- [ ] Output profiles adapt paper, business plan, slides, speech, and defense language
+- [ ] Human-output pass preserves facts, provenance, synthetic labels, and AI disclosure
+- [ ] Human approval gates for side effects and red-line compliance
+- [ ] Artifact hashes and claim-evidence provenance
+- [ ] AI usage ledger and disclosure export
+- [ ] Synthetic data labeling and submission blocking
+- [ ] Windows/Unix adapter tests
+- [ ] Idempotent remote jobs, messages, uploads, and submissions
+- [ ] 17 new skill eval files loaded by CI
+- [ ] Batch 1 modeling workflow end-to-end test
+- [ ] Innovation workflow rubric-to-evidence test
+- [ ] Final submission preflight and manual approval

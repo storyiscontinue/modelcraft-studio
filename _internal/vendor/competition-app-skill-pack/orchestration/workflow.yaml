@@ -1,0 +1,43 @@
+version: 1
+workflow_id: competition-default
+defaults:
+  runtime_mode: zero-config
+  output_profile:
+    language: zh-CN
+    voice: student-team
+    formality: standard
+    preserve_team_voice: true
+    avoid_generic_phrasing: true
+    ai_disclosure_required: true
+fallback:
+  missing_optional_capability: partial
+  missing_official_rules: needs_rule_refresh
+  allow_manual_upload: true
+  preserve_completed_nodes: true
+nodes:
+  - id: rules
+    skill: competition-rule-ingestor
+  - id: compliance
+    skill: eligibility-and-compliance-check
+    needs: [rules]
+  - id: route
+    skill: competition-router
+    needs: [rules, compliance]
+  - id: domain
+    dynamic: true
+    needs: [route]
+  - id: provenance
+    skill: evidence-provenance
+    needs: [domain]
+  - id: ai-ledger
+    skill: ai-usage-ledger
+    needs: [domain]
+  - id: judge
+    skill: judge-simulation
+    needs: [provenance, ai-ledger]
+  - id: approval
+    type: human_gate
+    needs: [judge]
+  - id: package
+    skill: submission-packager
+    needs: [approval]
