@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@500;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css?v=2.2">
+    <link rel="stylesheet" href="index.css?v=3.0">
 </head>
 <body>
 
@@ -24,14 +24,15 @@
                 <span class="logo-text"><span class="logo-light">Model</span><span class="logo-bold">Craft</span></span>
             </a>
             <nav class="nav-menu">
+                <a href="#claude-relay" class="nav-link">双API架构</a>
+                <a href="#skills-toolchain" class="nav-link">88微技能</a>
                 <a href="#fourier-showcase" class="nav-link">傅里叶演示</a>
                 <a href="#topology" class="nav-link">拓扑网络</a>
                 <a href="#simulator" class="nav-link">学术终端</a>
-                <a href="#calculator" class="nav-link">算力开销</a>
                 <a href="#security" class="nav-link">安全边界</a>
             </nav>
             <div class="nav-actions">
-                <a href="#download" class="btn btn-outline btn-sm">免费获取 v1.5</a>
+                <a href="#download" class="btn btn-outline btn-sm">免费获取 v0.2.17</a>
             </div>
         </div>
     </header>
@@ -51,7 +52,7 @@
 
         <div class="container hero-container">
             <div class="badge-container">
-                <span class="badge-text"><span class="badge-dot"></span> 71x 本地 Skills &bull; DPAPI加密 &bull; 零隐私泄露</span>
+                <span class="badge-text"><span class="badge-dot"></span> v0.2.17 解密版 &bull; 88x 本地 Skills &bull; Claude Code CLI 驱动 &bull; DPAPI 硬件加密</span>
             </div>
             <h1 class="hero-title">
                 让数学之美，以优雅的姿态<br>
@@ -119,6 +120,101 @@
                         <span class="workflow-node-mini">资格合规</span> ⟶ 
                         <span class="workflow-node-mini">原型TRL</span> ⟶ 
                         <span class="workflow-node-mini">敏捷松冲刺</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Claude Code 驱动双 API 中转架构 (Claude Code & GPT Image Dual-Relay Section) -->
+    <section id="claude-relay" class="relay-architecture-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">DUAL-RELAY ARCHITECTURE ENGINE</span>
+                <h2 class="section-title">Claude Code 驱动 &bull; <span class="gradient-text">独立双 API 中转架构</span></h2>
+                <p class="section-desc">全新 v0.2.17 采用独立的 Claude Code CLI 引擎驱动，通过本地 Loopback 适配器将 Anthropic Messages 协议无缝转换为 OpenAI Responses API，同时解耦 GPT Image 图像生成 API。</p>
+            </div>
+
+            <!-- 架构链路可视化大图卡片 -->
+            <div class="relay-flow-card">
+                <div class="relay-flow-header">
+                    <span class="flow-tag">LOCAL LOOPBACK AGENT PIPELINE</span>
+                    <div class="flow-status-pill"><span class="pulse-green"></span> 本地双中转路由就绪</div>
+                </div>
+                <div class="relay-nodes-grid">
+                    <div class="relay-node-box">
+                        <div class="node-icon">🖥️</div>
+                        <div class="node-title">Desktop UI</div>
+                        <div class="node-sub">桌面应用服务界面</div>
+                    </div>
+                    <div class="relay-arrow">➔</div>
+                    <div class="relay-node-box">
+                        <div class="node-icon">⚙️</div>
+                        <div class="node-title">Loopback Engine</div>
+                        <div class="node-sub">本地 127.0.0.1 调度</div>
+                    </div>
+                    <div class="relay-arrow">➔</div>
+                    <div class="relay-node-box highlight">
+                        <div class="node-icon">🤖</div>
+                        <div class="node-title">Claude Code CLI</div>
+                        <div class="node-sub">v2.1.177 核心执行器</div>
+                    </div>
+                    <div class="relay-arrow">➔</div>
+                    <div class="relay-node-box">
+                        <div class="node-icon">🔄</div>
+                        <div class="node-title">Anthropic Adapter</div>
+                        <div class="node-sub">协议桥接转接器</div>
+                    </div>
+                    <div class="relay-arrow">➔</div>
+                    <div class="relay-node-box special">
+                        <div class="node-icon">⚡</div>
+                        <div class="node-title">GPT-5.6 Relay</div>
+                        <div class="node-sub">OpenAI Responses 接口</div>
+                    </div>
+                </div>
+
+                <!-- 独立 Image Relay 规则展示 -->
+                <div class="image-relay-subcard">
+                    <div class="subcard-header">
+                        <span class="subcard-title">🎨 GPT Image Relay 独立图像生成中转站</span>
+                        <span class="subcard-code">POST /v1/images/generations</span>
+                    </div>
+                    <p class="subcard-desc">
+                        论文插图与科学画卷独立走 GPT Image API 中转通道，拥有独立配置的 Base URL、模型 ID 与 API Key。秘钥仅在进程调用时注入，绝不落地存盘，保证作图全流程安全隔离。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 88 项科学 Skills 交付包与集成离线工具链 (88 Skills & DrawIO / XeLaTeX Toolchain) -->
+    <section id="skills-toolchain" class="skills-toolchain-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">SKILLS & EMBEDDED TOOLCHAIN</span>
+                <h2 class="section-title">88 微技能库 &bull; <span class="gradient-text">集成离线工具链</span></h2>
+                <p class="section-desc">包含 71 个学术建模核心 Skills + 17 个竞赛应用 Skills 完整交付包，内置 DrawIO 28.2.5 拓扑绘图工具与 XeLaTeX `cumcmthesis` 论文编译引擎。</p>
+            </div>
+
+            <div class="toolchain-grid">
+                <!-- 左卡片：88 Skills 交付包 -->
+                <div class="toolchain-card">
+                    <div class="tc-badge">SKILL PACK v2.0</div>
+                    <h3>📦 88 个科学 Skills 全量交付包</h3>
+                    <p class="tc-desc">涵盖求解器推导、敏感性分析、三轮刺客质检、人声化润色、抽样设计与竞赛合规审查。</p>
+                    <div class="skills-stats-row">
+                        <div class="sk-stat"><strong>71</strong> 学术建模微技能</div>
+                        <div class="sk-stat"><strong>17</strong> 竞赛应用交付包</div>
+                    </div>
+                </div>
+
+                <!-- 右卡片：DrawIO & XeLaTeX 离线工具链 -->
+                <div class="toolchain-card highlight-tc">
+                    <div class="tc-badge">OFFLINE RUNTIME</div>
+                    <h3>⚙️ 集成 DrawIO 28.2.5 & XeLaTeX 编译</h3>
+                    <p class="tc-desc">自动注入 `HC_DRAWIO` 与 `HC_XELATEX` 环境，支持矢量结构图一键生成与符合国赛/美赛标准的 30 页 PDF 自动化排版。</p>
+                    <div class="runtime-tags">
+                        <span>DrawIO 28.2.5</span> &bull; <span>XeLaTeX PDF</span> &bull; <span>cumcmthesis</span> &bull; <span>Pillow 12.2.0</span>
                     </div>
                 </div>
             </div>
@@ -470,8 +566,12 @@
                             <p>内置 Windows Sandbox 严格隔离环境脚本，一键封锁主机虚拟网卡、全局剪贴板、音视频输入及 vGPU 硬件驱动，建立彻底安全的纯离线算法验证空间。</p>
                         </div>
                         <div class="sec-feat-item">
-                            <h4>⚡ 多中转站 API 智能调度网关</h4>
-                            <p>内置 Web Research 网关（抓取 Jina/GitHub/CLI）与双 API 中转架构。低保密模块执行工作流计算，顶级推理中转站执行盲审挑刺，本地 MCP 网关确保数据不出站。</p>
+                            <h4>🔒 DPAPI 微软硬件级密钥安全保护</h4>
+                            <p>敏感中转站 URL、Model ID、自定义 Request Header 及 API Key 统一定向存储在 `data/protected-settings.json` 中，由 Windows 当前用户 DPAPI 硬件加密保护，绝无明文泄露。</p>
+                        </div>
+                        <div class="sec-feat-item">
+                            <h4>⚡ 绝密离线模式与出站物理审计 (`OMA_STRICT_OFFLINE=1`)</h4>
+                            <p>内置 `OMA_STRICT_OFFLINE=1` 环境变量红线支持，彻底禁绝任何外部更新检测与遥测上报，最终成果打包时自动清除所有内部 Log、.agent 目录与秘钥。</p>
                         </div>
                     </div>
                 </div>

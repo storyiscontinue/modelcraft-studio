@@ -795,8 +795,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         termLogsContainer.replaceChildren();
-        appendTermLog("// 首次启动处于“API 尚未配置”状态，请配置中转站后运行", "text-muted");
-        appendTermLog("[SYSTEM] 本地环境审计完成。所有已知外部遥测域名已被底层 Socket 阻断。", "text-success");
+        appendTermLog("// ModelCraft Studio v0.2.17 (Claude Code CLI v2.1.177 引擎挂载)", "text-muted");
+        appendTermLog("[SYSTEM] 本地沙箱审计就绪。DPAPI 密钥验证通过，Sockets 域名阻断启用。", "text-success");
 
         topologyNodes.forEach(node => {
             node.classList.remove('active', 'completed');
